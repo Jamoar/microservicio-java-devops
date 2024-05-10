@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  
+  build:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Clonacion de codigo
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.2.1
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+      
+      - name: Compilacion
+        run: |
+          mvn package
+          
+      - name: Ejecucion Test Unitarios
+        run: |
+          mvn clean verify
+
+      - name: Reporte de Jacoco
+        run: |
+          mvn jacoco:report
+          
+      - name: publicacion de reporte
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+         paths: ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+         token: ${{ secrets.TOKEN_JACOCO }}
+         min-coverage-overall: 70
+     

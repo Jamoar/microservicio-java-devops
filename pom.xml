@@ -29,6 +29,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.12</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -37,6 +44,21 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+    				<groupId>org.jacoco</groupId>
+        			<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.13-SNAPSHOT</version>
+				<executions>
+        			<reportSets>
+         				<reportSet>
+            					<reports>
+              					<!-- select non-aggregate reports -->
+              					<report>report</report>
+    				        	</reports>
+         				</reportSet>
+        			</reportSets>
+      			</plugin>
 		</plugins>
 	</build>
 

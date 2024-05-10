@@ -13,7 +13,7 @@ public class GreetingController {
 	public GreetingController(GreetingService service) {
 		this.service = service;
 	}
-String password = "12345";
+
 	@RequestMapping("/greeting")
 	public @ResponseBody String greeting() {
 		return service.greet();

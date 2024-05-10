@@ -29,9 +29,9 @@ jobs:
         run: |
           mvn clean verify
 
-      - name: Reporte de Jacoco
-        run: |
-          mvn jacoco:report
+      #- name: Reporte de Jacoco
+       # run: |
+        #  mvn jacoco:report
           
       #- name: publicacion de reporte
        # uses: madrapps/jacoco-report@v1.6.1

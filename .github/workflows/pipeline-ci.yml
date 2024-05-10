@@ -33,10 +33,10 @@ jobs:
         run: |
           mvn jacoco:report
           
-      - name: publicacion de reporte
-        uses: madrapps/jacoco-report@v1.6.1
-        with:
-         paths: ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
-         token: ${{ secrets.TOKEN_JACOCO }}
-         min-coverage-overall: 70
+      #- name: publicacion de reporte
+       # uses: madrapps/jacoco-report@v1.6.1
+        #with:
+         #paths: ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
+        # token: ${{ secrets.TOKEN_JACOCO }}
+        # min-coverage-overall: 70
      

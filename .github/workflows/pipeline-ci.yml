@@ -28,17 +28,6 @@ jobs:
       - name: Ejecucion Test Unitarios
         run: |
           mvn clean verify
-
-      #- name: Reporte de Jacoco
-       # run: |
-        #  mvn jacoco:report
-          
-      #- name: publicacion de reporte
-       # uses: madrapps/jacoco-report@v1.6.1
-        #with:
-         #paths: ${{ github.workspace }}/**/target/site/jacoco/jacoco.xml
-        # token: ${{ secrets.TOKEN_JACOCO }}
-        # min-coverage-overall: 70
     
       - name: Setup Java JDK
         uses: actions/setup-java@v4.2.1
@@ -53,3 +42,13 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.organization=jamoar \
           -Dsonar.projectKey=Jamoar_microservicio-java-devops
+          
+          - name: SonarQube Quality Gate Check
+            env:
+             SONAR_TOKEN: ${{ secrets.MS_KEY }}
+            uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
+            with:
+            scanMetadataReportFile: # optional, default is .scannerwork/report-task.txt
+                    
+
+                

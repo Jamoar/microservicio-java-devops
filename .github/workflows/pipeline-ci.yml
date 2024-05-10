@@ -71,3 +71,18 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.USUARIO_DOKER }}/microservicio-java-devops:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+
+      - name: Clonacion de codigo
+        uses: actions/checkout@v4
+      
+      - name: Despliegue
+        run: |
+          kubectl apply -f deploy.yaml
+
+

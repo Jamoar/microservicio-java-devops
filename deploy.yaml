@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: micoservicio-java-devops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: microservicio-java-devops
+  template:
+    metadata:
+      labels:
+        app: microservicio-java-devops
+    spec:
+      containers:
+      - name: microservicio-java-devops
+        image: josemorales20/microservicio-java-devops:latest
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservicio-java-service
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  - protocol: TCP
+  selector:
+    app: microservicio-java-devops

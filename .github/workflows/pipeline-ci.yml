@@ -86,3 +86,29 @@ jobs:
           kubectl apply -f deploy.yaml
 
 
+  testing:
+    needs: deploy
+    runs-on: self-hosted
+    
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Test de Postman
+        run: | 
+          postman login --with-api-key ${{ secrets.POSTMAN_TKN }}
+          postman collection run microservicio-java-devops
+
+      - name: JMeter Testing
+        run: | 
+          jmeter -n -t performance_test.jmx -l Summary-Report.jtl
+
+
+
+
+
+
+
+
+        
